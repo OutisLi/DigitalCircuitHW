@@ -37,29 +37,25 @@ void sim_exit()
 int main(int argc, char **argv)
 {
     sim_init(argc, argv);
-
-    top->io_sel = 0;
-    top->io_a = 0;
-    top->io_b = 0;
-    step_and_dump_wave(); // 将s，a和b均初始化为“0”
-    top->io_b = 1;
-    step_and_dump_wave(); // 将b改为“1”，s和a的值不变，继续保持“0”，
-    top->io_a = 1;
-    top->io_b = 0;
-    step_and_dump_wave(); // 将a，b分别改为“1”和“0”，s的值不变，
-    top->io_b = 1;
-    step_and_dump_wave(); // 将b改为“1”，s和a的值不变，维持10个时间单位
-
-    top->io_sel = 1;
-    top->io_a = 0;
-    top->io_b = 0;
-    step_and_dump_wave(); // 将s，a，b分别变为“1,0,0”，维持10个时间单位
-    top->io_b = 1;
+    top->io_s = 0b00;
+    top->io_a_0 = 0b00;
+    top->io_a_1 = 0b01;
+    top->io_a_2 = 0b10;
+    top->io_a_3 = 0b11;
     step_and_dump_wave();
-    top->io_a = 1;
-    top->io_b = 0;
+    top->io_a_0 = 0b01;
     step_and_dump_wave();
-    top->io_b = 1;
+    top->io_s = 0b01;
+    step_and_dump_wave();
+    top->io_a_1 = 0b10;
+    step_and_dump_wave();
+    top->io_s = 0b10;
+    step_and_dump_wave();
+    top->io_a_2 = 0b01;
+    step_and_dump_wave();
+    top->io_s = 0b11;
+    step_and_dump_wave();
+    top->io_a_3 = 0b00;
     step_and_dump_wave();
 
     sim_exit();

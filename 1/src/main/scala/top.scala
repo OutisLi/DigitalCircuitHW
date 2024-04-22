@@ -1,19 +1,25 @@
 package scala.top
 
 import chisel3._
-import Mux2_1._
+import chisel3.util._
 
+import mux2_1._
+import mux4_1._
+import mux_generator._
+
+// a 4 to 1 2bits mux using mux_generator
 class top extends Module {
   val io = IO(new Bundle {
-    val a   = Input(UInt(1.W))
-    val b   = Input(UInt(1.W))
-    val sel = Input(Bool())
-    val y   = Output(UInt(1.W))
+    val a = Input(Vec(4, UInt(2.W)))
+    val s = Input(UInt(2.W))
+    val y = Output(UInt(2.W))
   })
-
-  val mux2_1 = Module(new Mux2_1)
-  mux2_1.io.a   := io.a
-  mux2_1.io.b   := io.b
-  mux2_1.io.sel := io.sel
-  io.y          := mux2_1.io.y
+  val mux = Module(new MuxKey(4, 2, 2))
+  mux.io.key := io.s
+  mux.io.lut(0) := Cat("b00".U, io.a(0))
+  mux.io.lut(1) := Cat("b01".U, io.a(1))
+  mux.io.lut(2) := Cat("b10".U, io.a(2))
+  mux.io.lut(3) := Cat("b11".U, io.a(3))
+  io.y := mux.io.out
 }
+
