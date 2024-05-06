@@ -38,34 +38,41 @@ int main(int argc, char **argv)
 {
     sim_init(argc, argv);
 
-    top->io_ctrl = 0;  // add
-    top->io_a = 0b0100;
-    top->io_b = 0b0010;
+    top->io_func = 0b000;
+    top->io_A = 0b0100;
+    top->io_B = 0b0010;
     step_and_dump_wave();
-    top->io_a = 0b0111;
-    top->io_b = 0b0111;
+    top->io_func = 0b001;
+    top->io_A = 0b0101;
+    top->io_B = 0b0111;
     step_and_dump_wave();
-    top->io_a = 0b1001;
-    top->io_b = 0b0111;
+    top->io_func = 0b010;
+    top->io_A = 0b1001;
+    top->io_B = 0b0111;
     step_and_dump_wave();
-    top->io_a = 0b1001;
-    top->io_b = 0b1111;
+    top->io_func = 0b011;
+    top->io_A = 0b1001;
+    top->io_B = 0b1111;
     step_and_dump_wave();
-    top->io_ctrl = 1;  // sub
-    top->io_a = 0b0100;
-    top->io_b = 0b0010;
+    top->io_func = 0b100;
+    top->io_A = 0b0100;
+    top->io_B = 0b0010;
     step_and_dump_wave();
-    top->io_a = 0b0101;
-    top->io_b = 0b0111;
+    top->io_func = 0b101;
+    top->io_A = 0b0101;
+    top->io_B = 0b0111;
     step_and_dump_wave();
-    top->io_a = 0b1000;
-    top->io_b = 0b0000;
+    top->io_func = 0b110;
+    top->io_A = 0b1000;
+    top->io_B = 0b0000;
     step_and_dump_wave();
-    top->io_a = 0b1001;
-    top->io_b = 0b1111;
+    top->io_func = 0b111;
+    top->io_A = 0b1010;
+    top->io_B = 0b1010;
     step_and_dump_wave();
-    top->io_a = 0b1001;
-    top->io_b = 0b0111;
+    top->io_func = 0b001;
+    top->io_A = 0b1001;
+    top->io_B = 0b0111;
     step_and_dump_wave();
 
     sim_exit();

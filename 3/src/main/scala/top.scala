@@ -1,25 +1,24 @@
 package scala.top
 
 import chisel3._
-import Adder._
+import ALU._
 
 class top extends Module {
   val io = IO(new Bundle {
-    val a        = Input(SInt(4.W))
-    val b        = Input(SInt(4.W))
-    val ctrl     = Input(UInt(1.W))
-    val carry    = Output(UInt(1.W))
-    val overflow = Output(Bool())
+    val func     = Input(UInt(3.W))
+    val A        = Input(SInt(4.W))
+    val B        = Input(SInt(4.W))
+    val out      = Output(SInt(4.W))
     val zero     = Output(Bool())
-    val res      = Output(SInt(4.W))
+    val overflow = Output(Bool())
+    val carry    = Output(Bool())
   })
-
-  val adder = Module(new Adder(4))
-  adder.io.a    := io.a
-  adder.io.b    := io.b
-  adder.io.ctrl := io.ctrl
-  io.carry      := adder.io.carry
-  io.overflow   := adder.io.overflow
-  io.zero       := adder.io.zero
-  io.res        := adder.io.res
+  val alu = Module(new ALU(4))
+  alu.io.func := io.func
+  alu.io.A    := io.A
+  alu.io.B    := io.B
+  io.out      := alu.io.out
+  io.zero     := alu.io.zero
+  io.overflow := alu.io.overflow
+  io.carry    := alu.io.carry
 }
