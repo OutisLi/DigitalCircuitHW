@@ -3,4 +3,4 @@ nangate45/*
 *.log
 !project/*
 !scripts/*
-!bin/*
+!bin/libyaml-cpp.so.0.7
