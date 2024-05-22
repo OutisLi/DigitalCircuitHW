@@ -1,4 +1,6 @@
-bin/
-nangate45/
 result
+nangate45/*
 *.log
+!project/*
+!scripts/*
+!bin/*

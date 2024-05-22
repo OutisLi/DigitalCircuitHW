@@ -1,8 +1,8 @@
 PROJ_PATH = $(shell pwd)
 
-DESIGN ?= gcd
-SDC_FILE ?= $(PROJ_PATH)/example/gcd.sdc
-RTL_FILES ?= $(shell find $(PROJ_PATH)/example -name "*.v")
+DESIGN ?= top
+SDC_FILE ?= $(PROJ_PATH)/project/top.sdc
+RTL_FILES ?= $(shell find $(PROJ_PATH)/project -name "*.sv")
 export CLK_FREQ_MHZ ?= 500
 
 RESULT_DIR = $(PROJ_PATH)/result/$(DESIGN)-$(CLK_FREQ_MHZ)MHz
