@@ -1,0 +1,6 @@
+result
+nangate45/*
+*.log
+!project/*
+!scripts/*
+!bin/libyaml-cpp.so.0.7

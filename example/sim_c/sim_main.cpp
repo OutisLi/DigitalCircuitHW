@@ -50,29 +50,10 @@ int main(int argc, char **argv)
 {
     sim_init(argc, argv);
 
-    top->io_sel = 0;
-    top->io_a = 0;
-    top->io_b = 0;
-    step_and_dump_wave(); // 将s，a和b均初始化为“0”
-    top->io_b = 1;
-    step_and_dump_wave(); // 将b改为“1”，s和a的值不变，继续保持“0”，
-    top->io_a = 1;
-    top->io_b = 0;
-    step_and_dump_wave(); // 将a，b分别改为“1”和“0”，s的值不变，
-    top->io_b = 1;
-    step_and_dump_wave(); // 将b改为“1”，s和a的值不变，维持10个时间单位
-
-    top->io_sel = 1;
-    top->io_a = 0;
-    top->io_b = 0;
-    step_and_dump_wave(); // 将s，a，b分别变为“1,0,0”，维持10个时间单位
-    top->io_b = 1;
-    step_and_dump_wave();
-    top->io_a = 1;
-    top->io_b = 0;
-    step_and_dump_wave();
-    top->io_b = 1;
-    step_and_dump_wave();
+    top->reset = 1;
+    step_and_dump_wave(10);
+    top->reset = 0;
+    step_and_dump_wave(100);
 
     sim_exit();
     return 0;
